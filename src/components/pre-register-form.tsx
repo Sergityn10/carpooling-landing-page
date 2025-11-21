@@ -1,7 +1,7 @@
 "use client";
-
+import { createClient } from '@libsql/client';
 import { useFormState, useFormStatus } from "react-dom";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useActionState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -84,7 +84,7 @@ function SubmitButton() {
 }
 
 export function PreRegisterForm() {
-  const [state, formAction] = useFormState(submitPreRegisterForm, {
+  const [state, formAction] = useActionState(submitPreRegisterForm, {
     message: "",
     errors: {},
     success: false,
@@ -106,11 +106,37 @@ export function PreRegisterForm() {
 
   useEffect(() => {
     if (state.success) {
-      toast({
-        title: "¡Todo listo!",
-        description: state.message,
+
+      async function insertInTable(){
+
+        const db = await createClient({
+          url: process.env.NEXT_PUBLIC_DB_URL,
+          authToken: process.env.NEXT_PUBLIC_DB_TOKEN,
       });
-      form.reset();
+      
+      let result = await db.execute({
+        sql:"SELECT email FROM pre_register WHERE email = ?", 
+        args:[form.getValues().email]
+      });
+
+      if(result.rows.length > 0){
+        toast({
+          variant: "destructive",
+          title: "Error en el formulario",
+          description: "El email ya está registrado",
+        });
+        return;
+      }
+      let insert = await db.execute("INSERT INTO pre_register (city, email) VALUES (?, ?)", [form.getValues().city, form.getValues().email]);
+        toast({
+          title: "¡Todo listo!",
+          description: state.message,
+        });
+  
+        form.reset();
+
+      }
+      insertInTable();
     } else if (state.message && Object.keys(state.errors ?? {}).length > 0) {
       toast({
         variant: "destructive",

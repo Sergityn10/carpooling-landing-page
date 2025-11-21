@@ -8,6 +8,7 @@
  */
 
 import {ai} from '@/ai/genkit';
+import { createClient } from '@libsql/client';
 import {z} from 'genkit';
 
 const FindUsersInCityInputSchema = z.object({
@@ -34,9 +35,15 @@ export async function findUsersInCity(
 // In a real application, this would query a database.
 const getRegisteredUsersByCity = async (city: string): Promise<number> => {
     console.log(`Searching for users in ${city}`);
+    const db = createClient({
+      url: process.env.NEXT_PUBLIC_DB_URL,
+      authToken: process.env.NEXT_PUBLIC_DB_TOKEN,
+    })
+    const users = await db.execute("SELECT * FROM pre_register WHERE city = ?", [city]);
+
     // Return a pseudo-random number based on the city name length
     // to give a semblance of different results for different cities.
-    return city.length * 100 + Math.floor(Math.random() * 500);
+    return users.rows.length;
 }
 
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useFormState, useFormStatus } from "react-dom";
-import { useEffect } from "react";
+import { useActionState, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -40,11 +40,14 @@ function SubmitButton() {
 }
 
 export function ContactForm() {
-  const [state, formAction] = useFormState(submitContactForm, {
+  const [state, formAction] = useActionState(submitContactForm, {
     message: "",
     errors: {},
     success: false,
   });
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
   const { toast } = useToast();
 
   const form = useForm<z.infer<typeof contactSchema>>({
@@ -77,39 +80,43 @@ export function ContactForm() {
       <div>
         <Input
           id="name"
-          name="name"
           placeholder="Nombre"
           aria-label="Nombre"
-          onChange={form.handleChange}
-          value={form.watch("name")}
+          // **CORRECCIÓN: Usar form.register("name") para vincular el input**
+          {...form.register("name")} 
         />
         {state.errors?.name && (
           <p className="mt-1 text-sm text-destructive">{state.errors.name[0]}</p>
         )}
+        {/* React Hook Form Errors (opcional si no se usa setError en useEffect):
+        {form.formState.errors.name && (
+            <p className="mt-1 text-sm text-destructive">{form.formState.errors.name.message}</p>
+        )}
+        */}
       </div>
       <div>
         <Input
           id="email"
-          name="email"
           type="email"
           placeholder="Email"
           aria-label="Email"
-          onChange={form.handleChange}
-          value={form.watch("email")}
+          // **CORRECCIÓN: Usar form.register("email") para vincular el input**
+          {...form.register("email")}
         />
         {state.errors?.email && (
           <p className="mt-1 text-sm text-destructive">{state.errors.email[0]}</p>
         )}
       </div>
+
+      {/* CAMPO MENSAJE */}
       <div>
         <Textarea
           id="message"
-          name="message"
           placeholder="Mensaje"
           aria-label="Mensaje"
           rows={5}
-          onChange={form.handleChange}
-          value={form.watch("message")}
+          // **CORRECCIÓN: Usar form.register("message") para vincular el textarea**
+          {...form.register("message")}
         />
         {state.errors?.message && (
           <p className="mt-1 text-sm text-destructive">{state.errors.message[0]}</p>
