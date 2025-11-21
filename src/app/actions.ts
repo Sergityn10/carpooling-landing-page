@@ -21,7 +21,7 @@ export async function submitContactForm(prevState: any, formData: FormData) {
       message: "Por favor, corrige los errores en el formulario.",
       success: false,
     };
-  }
+  }`  `
 
   // Here you would typically send an email, save to a database, etc.
   // For this example, we'll just log it and return a success message.

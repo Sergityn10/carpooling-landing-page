@@ -8,6 +8,7 @@ import { AnimatedCounter } from "@/components/animated-counter";
 import { CityUserFinder } from "@/components/city-user-finder";
 import { ContactForm } from "@/components/contact-form";
 import { Car, CheckCircle, Leaf, PiggyBank, Smile, Sparkles, Users, Award } from "lucide-react";
+import Link from "next/link";
 
 export default function Home() {
   const heroImage = PlaceHolderImages.find((img) => img.id === "hero-mockup");
@@ -82,7 +83,7 @@ export default function Home() {
                 </p>
                 <div className="flex flex-col gap-4 sm:flex-row sm:justify-center md:justify-start">
                     <Button size="lg" asChild>
-                        <a href="#download">Empieza a Ahorrar Hoy</a>
+                        <Link href="/pre-register">Empieza a Ahorrar Hoy</Link>
                     </Button>
                     <Button size="lg" variant="outline" asChild>
                         <a href="#how-it-works">Cómo Funciona</a>

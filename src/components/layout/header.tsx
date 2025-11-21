@@ -19,9 +19,9 @@ export function Header() {
   }, []);
 
   const navLinks = [
-    { href: "#benefits", label: "Beneficios" },
-    { href: "#how-it-works", label: "Cómo Funciona" },
-    { href: "#contact", label: "Contacto" },
+    { href: "/#benefits", label: "Beneficios" },
+    { href: "/#how-it-works", label: "Cómo Funciona" },
+    { href: "/#contact", label: "Contacto" },
   ];
 
   return (
@@ -51,7 +51,9 @@ export function Header() {
         </nav>
 
         <div className="hidden items-center gap-2 md:flex">
-          <Button>Descargar App</Button>
+          <Button asChild>
+            <Link href="/pre-register">Descargar App</Link>
+          </Button>
         </div>
 
         <div className="md:hidden">
@@ -92,7 +94,9 @@ export function Header() {
                   ))}
                 </nav>
                 <div className="mt-8">
-                  <Button className="w-full" size="lg">Descargar App</Button>
+                  <Button className="w-full" size="lg" asChild>
+                    <Link href="/pre-register">Descargar App</Link>
+                  </Button>
                 </div>
               </div>
             </SheetContent>
