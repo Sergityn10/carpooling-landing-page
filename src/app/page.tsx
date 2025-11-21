@@ -5,7 +5,7 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { AnimatedCounter } from "@/components/animated-counter";
-import { EcoRouteFinder } from "@/components/eco-route-finder";
+import { CityUserFinder } from "@/components/city-user-finder";
 import { ContactForm } from "@/components/contact-form";
 import { Car, CheckCircle, Leaf, PiggyBank, Smile, Sparkles, Users, Award } from "lucide-react";
 
@@ -60,7 +60,7 @@ export default function Home() {
 
   const socialProofStats = [
       { value: 5000, label: "Usuarios Registrados", prefix: "+", suffix:"" },
-      { value: 120000, label: "Kilómetros Compartidos", prefix: "+", suffix:" km" },
+      { value: 5000, label: "Kilómetros Compartidos", prefix: "+", suffix:" km" },
       { value: 50, label: "Toneladas de CO2 Ahorradas", prefix: "-", suffix:" t" },
   ]
 
@@ -190,7 +190,7 @@ export default function Home() {
         {/* How it works / AI tool Section */}
         <section id="how-it-works" className="py-20 md:py-28">
           <div className="container mx-auto px-4 md:px-6">
-            <EcoRouteFinder />
+            <CityUserFinder />
           </div>
         </section>
         
