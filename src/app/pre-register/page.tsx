@@ -15,7 +15,7 @@ export default function PreRegisterPage() {
           <Link href="/" className="mb-8 flex items-center gap-2">
             <Leaf className="h-8 w-8 text-primary" />
             <span className="font-headline text-2xl font-bold text-foreground">
-              EcoTrips
+              YouConnext
             </span>
           </Link>
           <Card className="border-0 shadow-none -m-6 md:-m-8">

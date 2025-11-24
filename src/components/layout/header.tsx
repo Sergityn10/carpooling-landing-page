@@ -34,7 +34,7 @@ export function Header() {
         <Link href="/" className="flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
           <Leaf className="h-8 w-8 text-primary" />
           <span className="font-headline text-2xl font-bold text-foreground">
-            EcoTrips
+            YouConnext
           </span>
         </Link>
 

@@ -5,7 +5,7 @@ import './globals.css';
 import { MapsProvider } from '@/components/MapsProvider';
 
 export const metadata: Metadata = {
-  title: 'EcoTrips - Carpooling Diario y Ecológico',
+  title: 'YouConnext - Carpooling Diario y Ecológico',
   description: 'Ahorra en combustible y estrés compartiendo tus trayectos fijos con nuestra comunidad.',
 };
 
