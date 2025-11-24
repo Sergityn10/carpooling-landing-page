@@ -156,12 +156,11 @@ export function PreRegisterForm() {
               <FormItem>
                 <FormControl>
                   {apiKey ? (
-                    <Wrapper apiKey={apiKey} libraries={["places"]}>
                       <AutocompleteInput
                         field={field}
                         setFormValue={(value) => form.setValue("city", value, { shouldValidate: true })}
                       />
-                    </Wrapper>
+
                   ) : (
                      <div className="relative">
                         <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />

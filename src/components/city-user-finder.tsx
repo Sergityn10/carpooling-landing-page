@@ -68,7 +68,6 @@ export function CityUserFinder() {
   useEffect(() => {
     setApiKey(process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || null);
   }, []);
-
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -103,12 +102,11 @@ export function CityUserFinder() {
               <FormLabel>Tu Ciudad</FormLabel>
               <FormControl>
                 {apiKey ? (
-                  <Wrapper apiKey={apiKey} libraries={["places"]}>
                     <AutocompleteInput
                       field={field}
                       setFormValue={(value) => form.setValue("city", value)}
                     />
-                  </Wrapper>
+
                 ) : (
                   <Input placeholder="Ej: Barcelona" {...field} />
                 )}
